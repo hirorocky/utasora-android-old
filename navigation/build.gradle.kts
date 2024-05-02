@@ -3,11 +3,10 @@ plugins {
     id(libs.plugins.kotlin.android.get().pluginId)
     alias(libs.plugins.hilt) apply false
     alias(libs.plugins.ksp) apply false
-    id(libs.plugins.dokka.get().pluginId)
 }
 
 android {
-    namespace = "template.navigation"
+    namespace = "io.github.hirorocky.utasora.navigation"
 
     buildFeatures {
         compose = true
@@ -41,7 +40,6 @@ dependencies {
     // Others
     debugImplementation(libs.square.leakcanary)
 
-    annotationProcessor(libs.androidx.room.compiler)
 
     testImplementation(libs.junit)
 

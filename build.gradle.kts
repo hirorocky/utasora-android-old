@@ -3,8 +3,6 @@ import com.android.build.gradle.AppPlugin
 import com.android.build.gradle.BaseExtension
 import com.android.build.gradle.LibraryExtension
 import com.android.build.gradle.LibraryPlugin
-import org.jetbrains.dokka.gradle.DokkaMultiModuleTask
-import org.jetbrains.dokka.gradle.DokkaTask
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
@@ -12,12 +10,10 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
     id(libs.plugins.detektGradlePlugin.get().pluginId).version(libs.versions.detektGradlePlugin)
-    alias(libs.plugins.paparazzi) apply false
     alias(libs.plugins.hilt) apply false
     alias(libs.plugins.ksp) apply false
     id(libs.plugins.sortDependencies.get().pluginId).version(libs.versions.sortDependencies).apply(false)
     alias(libs.plugins.kotlinter) apply false
-    id(libs.plugins.dokka.get().pluginId).version(libs.versions.dokkaVersion).apply(false)
 }
 
 buildscript {
@@ -40,8 +36,6 @@ buildscript {
         classpath(libs.hilt.plugin)
         classpath(libs.spotless)
         classpath (libs.protobuf.gradle.plugin)
-        classpath (libs.dokkaDocumentation.get())
-        classpath (libs.dokka.gradle.plugin)
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -68,19 +62,10 @@ buildscript {
 
 
 apply(from = "buildscripts/githooks.gradle")
-apply(from = "buildscripts/setup.gradle")
 apply(from = "buildscripts/versionsplugin.gradle")
 
 subprojects {
     apply(from = "../buildscripts/detekt.gradle")
-    apply(plugin ="org.jetbrains.dokka")
-    // configure all format tasks at once
-    tasks.withType<DokkaTask>().configureEach {
-        dokkaSourceSets.configureEach {
-            outputDirectory.set(rootProject.mkdir("docs/"))
-            noAndroidSdkLink.set(false)
-        }
-    }
 }
 
 tasks.register("clean", Delete::class) {

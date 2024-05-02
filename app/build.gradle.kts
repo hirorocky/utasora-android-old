@@ -5,19 +5,17 @@ plugins {
     id(libs.plugins.ksp.get().pluginId)
     id(libs.plugins.kotlin.android.get().pluginId)
     id(libs.plugins.kotlinter.get().pluginId)
-    alias(libs.plugins.paparazzi) apply false
     alias(libs.plugins.hilt) apply false
     id(libs.plugins.sortDependencies.get().pluginId)
-    id(libs.plugins.dokka.get().pluginId)
     id(libs.plugins.protobuf.get().pluginId)
 }
 
 android {
     compileSdk = libs.versions.compileSdk.get().toInt()
-    namespace = "template"
+    namespace = "io.github.hirorocky.utasora"
 
     defaultConfig {
-        applicationId = "template.app.id"
+        applicationId = "io.github.hirorocky.utasora"
         versionCode = 1
         versionName = "1.0"
     }
@@ -117,8 +115,6 @@ android {
 }
 
 dependencies {
-    ksp(libs.androidx.room.compiler)
-    ksp(libs.square.moshi.kotlin.codegen)
 
     kspAndroidTest(libs.hilt.android.compiler)
 
@@ -137,7 +133,6 @@ dependencies {
     implementation(libs.androidx.hilt.compose.navigation)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     // Network and Local
-    implementation(libs.androidx.room.runtime)
     implementation(libs.compose.material3)
     implementation(libs.compose.ui)
     implementation(libs.compose.ui.tooling)
@@ -147,9 +142,6 @@ dependencies {
     implementation(libs.ktor.client.core)
     implementation(libs.protobuf.javaLite)
     implementation(libs.protobuf.kotlinLite)
-    implementation(libs.square.moshi.kotlin)
-    implementation(libs.square.retrofit)
-    implementation(libs.square.retrofit.converter.moshi)
     implementation(libs.timber)
     //Module
     implementation(projects.common)
@@ -164,7 +156,6 @@ dependencies {
     // Others
     debugImplementation(libs.square.leakcanary)
 
-    annotationProcessor(libs.androidx.room.compiler)
     // Hilt
     annotationProcessor(libs.hilt.compiler)
 
