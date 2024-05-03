@@ -15,7 +15,7 @@
         <activity
             android:name="io.github.hirorocky.utasora.MainActivity"
             android:exported="true"
-            android:theme="@style/Theme.AppTheme.NoActionBar"
+            android:theme="@style/Theme.AppTheme"
             android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
