@@ -1,13 +1,12 @@
-import java.util.Properties
-
 plugins {
     id(libs.plugins.android.application.get().pluginId)
     id(libs.plugins.ksp.get().pluginId)
     id(libs.plugins.kotlin.android.get().pluginId)
     id(libs.plugins.kotlinter.get().pluginId)
-    alias(libs.plugins.hilt) apply false
+    alias(libs.plugins.hilt)
     id(libs.plugins.sortDependencies.get().pluginId)
     id(libs.plugins.protobuf.get().pluginId)
+    id("kotlin-kapt")
 }
 
 android {
@@ -158,6 +157,7 @@ dependencies {
 
     // Hilt
     annotationProcessor(libs.hilt.compiler)
+    kapt(libs.hilt.android.compiler)
 
     testImplementation(libs.junit)
 
@@ -166,6 +166,10 @@ dependencies {
     androidTestImplementation(libs.androidx.test.junit)
     androidTestImplementation(libs.compose.ui.test.junit)
     androidTestImplementation(libs.hilt.android.testing)
+}
+
+kapt {
+    correctErrorTypes = true
 }
 
 protobuf {
