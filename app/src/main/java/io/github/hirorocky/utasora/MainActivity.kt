@@ -24,33 +24,25 @@
 */
 package io.github.hirorocky.utasora
 
-import android.animation.ObjectAnimator
 import android.os.Bundle
-import android.view.View
-import android.view.animation.OvershootInterpolator
 import androidx.activity.ComponentActivity
 import androidx.activity.SystemBarStyle
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.activity.viewModels
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.toArgb
-import androidx.core.animation.doOnEnd
-import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.WindowCompat
 import androidx.navigation.compose.rememberNavController
 import dagger.hilt.android.AndroidEntryPoint
-import io.github.hirorocky.utasora.common.DURATION
-import io.github.hirorocky.utasora.common.VALUES_X
-import io.github.hirorocky.utasora.common.VALUES_Y
 import io.github.hirorocky.utasora.common.utils.RootUtil
 import io.github.hirorocky.utasora.theme.UtasoraTheme
-import io.github.hirorocky.utasora.theme.splashScreen.SplashViewModel
 import io.github.hirorocky.utasora.ui.MainAnimationNavHost
 import timber.log.Timber
 
@@ -59,8 +51,6 @@ class MainActivity : ComponentActivity() {
     companion object {
         private val Tag = MainActivity::class.java.simpleName
     }
-
-    private val splashViewModel: SplashViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -76,37 +66,6 @@ class MainActivity : ComponentActivity() {
 
         Timber.tag(Tag).d("onCreate")
 
-        installSplashScreen().apply {
-            setKeepOnScreenCondition {
-                !splashViewModel.isLoading.value
-            }
-            setOnExitAnimationListener { screen ->
-                val zoomX = ObjectAnimator.ofFloat(
-                    screen.iconView,
-                    View.SCALE_X,
-                    VALUES_X,
-                    VALUES_Y,
-                )
-                zoomX.interpolator = OvershootInterpolator()
-                zoomX.duration = DURATION
-                zoomX.doOnEnd { screen.remove() }
-
-                val zoomY = ObjectAnimator.ofFloat(
-                    screen.iconView,
-                    View.SCALE_Y,
-                    VALUES_X,
-                    VALUES_Y,
-                )
-                zoomY.interpolator = OvershootInterpolator()
-                zoomY.duration = DURATION
-                zoomY.doOnEnd { screen.remove() }
-
-                zoomX.start()
-                zoomY.start()
-            }
-        }
-        // splashViewModel.checkStartScreen() { route -> }
-
         enableEdgeToEdge()
         setContent {
             UtasoraTheme {
@@ -115,7 +74,12 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background,
                 ) {
                     val navController = rememberNavController()
-                    MainAnimationNavHost(navController)
+                    Scaffold { innerPaddingModifier ->
+                        MainAnimationNavHost(
+                            navController = navController,
+                            modifier = Modifier.padding(innerPaddingModifier),
+                        )
+                    }
                 }
             }
         }
@@ -163,9 +127,4 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
-}
-
-@Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
 }

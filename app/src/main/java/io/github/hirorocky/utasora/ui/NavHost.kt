@@ -27,25 +27,45 @@ package io.github.hirorocky.utasora.ui
 import androidx.activity.compose.BackHandler
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import io.github.hirorocky.utasora.navigation.ScreenDestinations
 import io.github.hirorocky.utasora.navigation.canGoBack
+import io.github.hirorocky.utasora.navigation.navigateAndPopUp
 import io.github.hirorocky.utasora.navigation.navigateTo
 import io.github.hirorocky.utasora.navigation.screen
 import io.github.hirorocky.utasora.screens.HomeScreen
 import io.github.hirorocky.utasora.screens.ViewScreen
+import io.github.hirorocky.utasora.screens.splash.SplashRoute
+import io.github.hirorocky.utasora.screens.title.TitleRoute
 
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
 fun MainAnimationNavHost(
     navController: NavHostController,
-    startDestination: String = ScreenDestinations.HomeScreen.route,
+    modifier: Modifier = Modifier,
+    startDestination: String = ScreenDestinations.SplashScreen.route,
 ) {
     NavHost(
         navController = navController,
         startDestination = startDestination,
+        modifier = modifier,
     ) {
+        screen(ScreenDestinations.SplashScreen.route) {
+            SplashRoute(
+                navigateToTitle = {
+                    navController.navigateAndPopUp(
+                        navigateRoute = ScreenDestinations.TitleScreen.route,
+                        popupRoute = ScreenDestinations.SplashScreen.route,
+                    )
+                },
+                navigateToMain = { /*TODO*/ },
+            )
+        }
+        screen(ScreenDestinations.TitleScreen.route) {
+            TitleRoute()
+        }
         screen(ScreenDestinations.HomeScreen.route) {
             HomeScreen(navController = navController)
         }

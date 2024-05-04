@@ -33,6 +33,14 @@ fun NavHostController.navigateTo(route: String) =
         launchSingleTop = true
     }
 
+fun NavHostController.navigateAndPopUp(navigateRoute: String, popupRoute: String) =
+    navigate(navigateRoute) {
+        popUpTo(popupRoute) {
+            inclusive = true
+        }
+        launchSingleTop = true
+    }
+
 // i want to back when
 val NavHostController.canGoBack: Boolean
     get() = this.currentBackStackEntry?.lifecycle?.currentState == Lifecycle.State.RESUMED
