@@ -44,6 +44,9 @@ ktlint = "1.0.1"
 kotlinter = "4.2.0"
 versioningPlugin = "1.9.23"
 
+firebase = "32.8.1"
+googleServices = "4.3.15"
+
 [libraries]
 androidx-core-splashscreen = { module = "androidx.core:core-splashscreen", version.ref = "coreSplashscreen" }
 compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
@@ -103,6 +106,12 @@ javax-inject = { group = "javax.inject", name = "javax.inject", version = "1" }
 square-leakcanary = { module = "com.squareup.leakcanary:leakcanary-android", version.ref = "leakCanary" }
 versioning-plugin = { module = "org.jetbrains.dokka:versioning-plugin", version.ref = "versioningPlugin" }
 
+firebase-bom = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebase" }
+firebase-auth = { group = "com.google.firebase", name = "firebase-auth" }
+firebase-firestore = { group = "com.google.firebase", name = "firebase-firestore" }
+firebase-analytics = { group = "com.google.firebase", name = "firebase-analytics" }
+google-services-plugin = { module = "com.google.gms:google-services", version.ref = "googleServices" }
+
 [plugins]
 android-application = { id = "com.android.application", version.ref = "androidApplication" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlinAndroid" }
@@ -117,5 +126,5 @@ kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", versi
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 protobuf = { id = "com.google.protobuf", version.ref = "protobufGradlePlugin" }
 androidLibrary = { id = "com.android.library", version.ref = "androidApplication" }
-
+google-services = { id = "com.google.gms.google-services", version.ref = "googleServices" }
 

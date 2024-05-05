@@ -1,4 +1,5 @@
 plugins {
+    id("kotlin-kapt")
     id(libs.plugins.android.application.get().pluginId)
     id(libs.plugins.ksp.get().pluginId)
     id(libs.plugins.kotlin.android.get().pluginId)
@@ -6,7 +7,7 @@ plugins {
     alias(libs.plugins.hilt)
     id(libs.plugins.sortDependencies.get().pluginId)
     id(libs.plugins.protobuf.get().pluginId)
-    id("kotlin-kapt")
+    id(libs.plugins.google.services.get().pluginId)
 }
 
 android {
@@ -158,6 +159,12 @@ dependencies {
     // Hilt
     annotationProcessor(libs.hilt.compiler)
     kapt(libs.hilt.android.compiler)
+
+    // Firebase
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.auth)
+    implementation(libs.firebase.firestore)
+    implementation(libs.firebase.analytics)
 
     testImplementation(libs.junit)
 
