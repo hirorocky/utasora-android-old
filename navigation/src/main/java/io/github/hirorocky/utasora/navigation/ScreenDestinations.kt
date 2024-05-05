@@ -28,6 +28,8 @@ sealed class ScreenDestinations(val route: String) {
     // Destinations
     data object SplashScreen : ScreenDestinations("splash_screen")
     data object TitleScreen : ScreenDestinations("title_screen")
+    data object SignUpScreen : ScreenDestinations("signup_screen")
+    data object MainScreen : ScreenDestinations("main_screen")
     data object HomeScreen : ScreenDestinations("home_screen")
     data object ViewScreen : ScreenDestinations("view_screen")
 }

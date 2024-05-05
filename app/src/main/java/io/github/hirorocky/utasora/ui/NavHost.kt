@@ -37,6 +37,8 @@ import io.github.hirorocky.utasora.navigation.navigateTo
 import io.github.hirorocky.utasora.navigation.screen
 import io.github.hirorocky.utasora.screens.HomeScreen
 import io.github.hirorocky.utasora.screens.ViewScreen
+import io.github.hirorocky.utasora.screens.main.MainRoute
+import io.github.hirorocky.utasora.screens.signup.SignUpRoute
 import io.github.hirorocky.utasora.screens.splash.SplashRoute
 import io.github.hirorocky.utasora.screens.title.TitleRoute
 
@@ -60,11 +62,33 @@ fun MainAnimationNavHost(
                         popupRoute = ScreenDestinations.SplashScreen.route,
                     )
                 },
-                navigateToMain = { /*TODO*/ },
+                navigateToMain = {
+                    navController.navigateAndPopUp(
+                        navigateRoute = ScreenDestinations.MainScreen.route,
+                        popupRoute = ScreenDestinations.SplashScreen.route,
+                    )
+                },
             )
         }
         screen(ScreenDestinations.TitleScreen.route) {
-            TitleRoute()
+            TitleRoute(
+                navigateToSignUp = {
+                    navController.navigateTo(ScreenDestinations.SignUpScreen.route)
+                },
+            )
+        }
+        screen(ScreenDestinations.SignUpScreen.route) {
+            SignUpRoute()
+        }
+        screen(ScreenDestinations.MainScreen.route) {
+            MainRoute(
+                navigateToTitle = {
+                    navController.navigateAndPopUp(
+                        navigateRoute = ScreenDestinations.TitleScreen.route,
+                        popupRoute = ScreenDestinations.MainScreen.route,
+                    )
+                },
+            )
         }
         screen(ScreenDestinations.HomeScreen.route) {
             HomeScreen(navController = navController)

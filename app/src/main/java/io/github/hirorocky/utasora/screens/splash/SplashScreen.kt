@@ -11,7 +11,6 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
-import kotlinx.coroutines.delay
 
 @Composable
 fun SplashRoute(
@@ -20,7 +19,6 @@ fun SplashRoute(
     viewModel: SplashViewModel = hiltViewModel(),
 ) {
     LaunchedEffect(key1 = Unit) {
-        delay(1000L) // FIXME
         viewModel.onAppStart(
             navigateToTitle = navigateToTitle,
             navigateToMain = navigateToMain,
