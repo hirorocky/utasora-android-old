@@ -82,14 +82,21 @@ fun MainAnimationNavHost(
             )
         }
         screen(ScreenDestinations.SignUpScreen.route) {
-            SignUpRoute()
+            SignUpRoute(
+                navigateToMain = {
+                    navController.navigateAndPopUp(
+                        navigateRoute = ScreenDestinations.MainScreen.route,
+                        popupRoute = ScreenDestinations.TitleScreen.route,
+                    )
+                },
+            )
         }
         screen(ScreenDestinations.SignInScreen.route) {
             SignInRoute(
                 navigateToMain = {
                     navController.navigateAndPopUp(
                         navigateRoute = ScreenDestinations.MainScreen.route,
-                        popupRoute = ScreenDestinations.SignInScreen.route,
+                        popupRoute = ScreenDestinations.TitleScreen.route,
                     )
                 },
             )

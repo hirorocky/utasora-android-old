@@ -1,19 +1,21 @@
 package io.github.hirorocky.utasora.screens.signup
 
-import android.widget.Toast
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
+import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.hilt.navigation.compose.hiltViewModel
 
 @Composable
 fun SignUpRoute(
+    navigateToMain: () -> Unit,
     viewModel: SignUpViewModel = hiltViewModel(),
 ) {
-    val context = LocalContext.current
     SignUpScreen(
         state = viewModel.state,
         onEmailChange = viewModel::onEmailChange,
@@ -21,9 +23,7 @@ fun SignUpRoute(
         onPasswordVisibilityToggle = viewModel::onPasswordVisibilityToggle,
         onSubmit = {
             viewModel.submit(
-                onSuccess = {
-                    Toast.makeText(context, "サインアップ成功", Toast.LENGTH_SHORT).show()
-                },
+                onSuccess = navigateToMain,
             )
         },
     )
@@ -42,14 +42,26 @@ fun SignUpScreen(
             value = state.email,
             onValueChange = onEmailChange,
             label = { Text("Email") },
+            keyboardOptions = KeyboardOptions.Default.copy(
+                keyboardType = KeyboardType.Email,
+            ),
         )
         TextField(
             value = state.password,
             onValueChange = onPasswordChange,
             label = { Text("Password") },
+            keyboardOptions = KeyboardOptions.Default.copy(
+                keyboardType = KeyboardType.Password,
+            ),
         )
         Button(onClick = onSubmit) {
-            Text(text = "サインアップ")
+            if (state.isLoading) {
+                CircularProgressIndicator(
+                    color = MaterialTheme.colorScheme.onPrimary,
+                )
+            } else {
+                Text(text = "登録する")
+            }
         }
     }
 }
