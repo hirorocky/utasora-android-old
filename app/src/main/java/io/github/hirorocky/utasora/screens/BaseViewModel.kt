@@ -11,12 +11,11 @@ open class BaseViewModel : ViewModel() {
     fun launchCatching(block: suspend CoroutineScope.() -> Unit) =
         viewModelScope.launch(
             CoroutineExceptionHandler { _, throwable ->
-                Timber.e(ERROR_TAG, throwable.message.orEmpty())
+                Timber.e(
+                    t = throwable,
+                    message = throwable.message,
+                )
             },
             block = block,
         )
-
-    companion object {
-        const val ERROR_TAG = "ERROR ON VIEWMODEL"
-    }
 }
