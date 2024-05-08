@@ -15,9 +15,9 @@ class StorageServiceImpl @Inject constructor() : StorageService {
             .set(User(id = userId))
     }
 
-    override suspend fun createInspiration(userId: String, text: String) {
+    override suspend fun createPhrase(userId: String, text: String) {
         db.collection("users").document(userId)
-            .collection("inspirations")
+            .collection("phrases")
             .add(
                 hashMapOf(
                     "text" to text,

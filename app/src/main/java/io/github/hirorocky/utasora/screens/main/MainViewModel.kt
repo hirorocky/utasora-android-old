@@ -34,7 +34,7 @@ class MainViewModel @Inject constructor(
     fun onClickSubmit() {
         state = state.copy(submitting = true)
         launchCatching {
-            storageService.createInspiration(
+            storageService.createPhrase(
                 userId = accountService.currentUserId,
                 text = state.text,
             )
