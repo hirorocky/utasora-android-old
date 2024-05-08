@@ -46,6 +46,7 @@ versioningPlugin = "1.9.23"
 
 firebase = "32.8.1"
 googleServices = "4.3.15"
+uiTextGoogleFonts = "1.6.7"
 
 [libraries]
 androidx-core-splashscreen = { module = "androidx.core:core-splashscreen", version.ref = "coreSplashscreen" }
@@ -111,6 +112,7 @@ firebase-auth = { group = "com.google.firebase", name = "firebase-auth" }
 firebase-firestore = { group = "com.google.firebase", name = "firebase-firestore" }
 firebase-analytics = { group = "com.google.firebase", name = "firebase-analytics" }
 google-services-plugin = { module = "com.google.gms:google-services", version.ref = "googleServices" }
+androidx-ui-text-google-fonts = { group = "androidx.compose.ui", name = "ui-text-google-fonts", version.ref = "uiTextGoogleFonts" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "androidApplication" }

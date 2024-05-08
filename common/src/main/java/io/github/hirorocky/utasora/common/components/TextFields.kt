@@ -52,7 +52,7 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import io.github.hirorocky.utasora.common.R
-import io.github.hirorocky.utasora.theme.UtasoraTheme
+import io.github.hirorocky.utasora.theme.AppTheme
 
 @Composable
 fun AppTextField(
@@ -129,7 +129,7 @@ fun AppTextField(
 @TemplatePreview
 @Composable
 fun AppTextFieldPreview() {
-    UtasoraTheme {
+    AppTheme {
         Surface {
             TextField(
                 modifier = Modifier
@@ -153,7 +153,7 @@ fun AppTextFieldPreview() {
 @TemplatePreview
 @Composable
 fun LoginScreenPreview() {
-    UtasoraTheme {
+    AppTheme {
         Surface(modifier = Modifier.fillMaxSize()) {
             AppTextField(
                 value = "template@gmail.com",

@@ -28,5 +28,6 @@ dependencies {
 
     implementation(libs.androidx.hilt.compose.navigation)
     implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.ui.text.google.fonts)
 
 }

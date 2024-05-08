@@ -42,7 +42,7 @@ import androidx.core.view.WindowCompat
 import androidx.navigation.compose.rememberNavController
 import dagger.hilt.android.AndroidEntryPoint
 import io.github.hirorocky.utasora.common.utils.RootUtil
-import io.github.hirorocky.utasora.theme.UtasoraTheme
+import io.github.hirorocky.utasora.theme.AppTheme
 import io.github.hirorocky.utasora.ui.MainAnimationNavHost
 import timber.log.Timber
 
@@ -68,7 +68,7 @@ class MainActivity : ComponentActivity() {
 
         enableEdgeToEdge()
         setContent {
-            UtasoraTheme {
+            AppTheme {
                 ChangeSystemBarsTheme(!isSystemInDarkTheme())
                 Surface(
                     color = MaterialTheme.colorScheme.background,

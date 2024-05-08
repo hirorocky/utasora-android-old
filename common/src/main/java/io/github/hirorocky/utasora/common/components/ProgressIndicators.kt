@@ -33,7 +33,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import io.github.hirorocky.utasora.theme.UtasoraTheme
+import io.github.hirorocky.utasora.theme.AppTheme
 
 @Composable
 fun FullScreenCircularProgressIndicator() {
@@ -50,7 +50,7 @@ fun FullScreenCircularProgressIndicator() {
 @TemplatePreview
 @Composable
 fun FullScreenCircularProgressIndicatorPreview() {
-    UtasoraTheme {
+    AppTheme {
         Surface {
             FullScreenCircularProgressIndicator()
         }
