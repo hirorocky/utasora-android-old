@@ -29,6 +29,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.SystemBarStyle
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
@@ -82,7 +83,9 @@ class MainActivity : ComponentActivity() {
                     ) { innerPaddingModifier ->
                         MainAnimationNavHost(
                             navController = navController,
-                            modifier = Modifier.padding(innerPaddingModifier),
+                            modifier = Modifier
+                                .padding(innerPaddingModifier)
+                                .background(color = MaterialTheme.colorScheme.surface),
                         )
                     }
                 }
@@ -107,26 +110,27 @@ class MainActivity : ComponentActivity() {
 
     @Composable
     private fun ChangeSystemBarsTheme(lightTheme: Boolean) {
-        val barColor = MaterialTheme.colorScheme.background.toArgb()
+        val statusBarColor = MaterialTheme.colorScheme.background.toArgb()
+        val navigationBarColor = MaterialTheme.colorScheme.surfaceVariant.toArgb()
         LaunchedEffect(lightTheme) {
             if (lightTheme) {
                 enableEdgeToEdge(
                     statusBarStyle = SystemBarStyle.light(
-                        barColor,
-                        barColor,
+                        statusBarColor,
+                        statusBarColor,
                     ),
                     navigationBarStyle = SystemBarStyle.light(
-                        barColor,
-                        barColor,
+                        navigationBarColor,
+                        navigationBarColor,
                     ),
                 )
             } else {
                 enableEdgeToEdge(
                     statusBarStyle = SystemBarStyle.dark(
-                        barColor,
+                        statusBarColor,
                     ),
                     navigationBarStyle = SystemBarStyle.dark(
-                        barColor,
+                        navigationBarColor,
                     ),
                 )
             }

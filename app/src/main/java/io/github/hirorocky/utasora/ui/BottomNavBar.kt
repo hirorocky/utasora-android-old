@@ -15,6 +15,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -32,8 +33,8 @@ import io.github.hirorocky.utasora.theme.AppTheme
 @Composable
 fun BottomNavBar(navController: NavHostController) {
     NavigationBar(
-        containerColor = MaterialTheme.colorScheme.background,
-        contentColor = MaterialTheme.colorScheme.primary,
+        containerColor = MaterialTheme.colorScheme.surfaceVariant,
+        contentColor = MaterialTheme.colorScheme.onSurfaceVariant,
     ) {
         val currentDestination = navController.currentBackStackEntryAsState().value?.destination
         BottomNavItems.entries.forEach { item ->
@@ -52,7 +53,7 @@ fun BottomNavBar(navController: NavHostController) {
                         } else {
                             item.iconInactive
                         },
-                        tint = MaterialTheme.colorScheme.primary,
+                        tint = MaterialTheme.colorScheme.onSurfaceVariant,
                         contentDescription = stringResource(id = item.titleId),
                     )
                 },
@@ -60,10 +61,13 @@ fun BottomNavBar(navController: NavHostController) {
                 label = {
                     Text(
                         text = stringResource(id = item.titleId),
-                        color = MaterialTheme.colorScheme.primary,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
                         style = MaterialTheme.typography.labelSmall,
                     )
                 },
+                colors = NavigationBarItemDefaults.colors(
+                    indicatorColor = MaterialTheme.colorScheme.tertiaryContainer,
+                ),
             )
         }
     }
