@@ -24,20 +24,19 @@
 */
 package io.github.hirorocky.utasora.ui
 
-import androidx.activity.compose.BackHandler
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import io.github.hirorocky.utasora.navigation.ScreenDestinations
-import io.github.hirorocky.utasora.navigation.canGoBack
-import io.github.hirorocky.utasora.navigation.navigateAndPopUp
+import io.github.hirorocky.utasora.navigation.clearAndNavigateTo
 import io.github.hirorocky.utasora.navigation.navigateTo
 import io.github.hirorocky.utasora.navigation.screen
-import io.github.hirorocky.utasora.screens.HomeScreen
-import io.github.hirorocky.utasora.screens.ViewScreen
-import io.github.hirorocky.utasora.screens.main.MainRoute
+import io.github.hirorocky.utasora.screens.introspection.IntrospectionRoute
+import io.github.hirorocky.utasora.screens.phrases.PhrasesRoute
+import io.github.hirorocky.utasora.screens.poems.PoemsRoute
+import io.github.hirorocky.utasora.screens.settings.SettingsRoute
 import io.github.hirorocky.utasora.screens.signin.SignInRoute
 import io.github.hirorocky.utasora.screens.signup.SignUpRoute
 import io.github.hirorocky.utasora.screens.splash.SplashRoute
@@ -58,15 +57,13 @@ fun MainAnimationNavHost(
         screen(ScreenDestinations.SplashScreen.route) {
             SplashRoute(
                 navigateToTitle = {
-                    navController.navigateAndPopUp(
-                        navigateRoute = ScreenDestinations.TitleScreen.route,
-                        popupRoute = ScreenDestinations.SplashScreen.route,
+                    navController.clearAndNavigateTo(
+                        route = ScreenDestinations.TitleScreen.route,
                     )
                 },
                 navigateToMain = {
-                    navController.navigateAndPopUp(
-                        navigateRoute = ScreenDestinations.MainScreen.route,
-                        popupRoute = ScreenDestinations.SplashScreen.route,
+                    navController.clearAndNavigateTo(
+                        route = ScreenDestinations.PhrasesScreen.route,
                     )
                 },
             )
@@ -84,9 +81,8 @@ fun MainAnimationNavHost(
         screen(ScreenDestinations.SignUpScreen.route) {
             SignUpRoute(
                 navigateToMain = {
-                    navController.navigateAndPopUp(
-                        navigateRoute = ScreenDestinations.MainScreen.route,
-                        popupRoute = ScreenDestinations.TitleScreen.route,
+                    navController.clearAndNavigateTo(
+                        route = ScreenDestinations.PoemsScreen.route,
                     )
                 },
             )
@@ -94,41 +90,29 @@ fun MainAnimationNavHost(
         screen(ScreenDestinations.SignInScreen.route) {
             SignInRoute(
                 navigateToMain = {
-                    navController.navigateAndPopUp(
-                        navigateRoute = ScreenDestinations.MainScreen.route,
-                        popupRoute = ScreenDestinations.TitleScreen.route,
+                    navController.clearAndNavigateTo(
+                        route = ScreenDestinations.PoemsScreen.route,
                     )
                 },
             )
         }
-        screen(ScreenDestinations.MainScreen.route) {
-            MainRoute(
+        screen(ScreenDestinations.PhrasesScreen.route) {
+            PhrasesRoute()
+        }
+        screen(ScreenDestinations.PoemsScreen.route) {
+            PoemsRoute()
+        }
+        screen(ScreenDestinations.IntrospectionScreen.route) {
+            IntrospectionRoute()
+        }
+        screen(ScreenDestinations.SettingsScreen.route) {
+            SettingsRoute(
                 navigateToTitle = {
-                    navController.navigateAndPopUp(
-                        navigateRoute = ScreenDestinations.TitleScreen.route,
-                        popupRoute = ScreenDestinations.MainScreen.route,
+                    navController.clearAndNavigateTo(
+                        route = ScreenDestinations.TitleScreen.route,
                     )
                 },
             )
-        }
-        screen(ScreenDestinations.HomeScreen.route) {
-            HomeScreen(navController = navController)
-        }
-        screen(ScreenDestinations.ViewScreen.route) {
-            ViewScreen(
-                onBackPress = {
-                    // navigateTo のためNavHostControllerを作成します。
-                    navController.navigateTo(ScreenDestinations.HomeScreen.route)
-                },
-            )
-        }
-    }
-    // Back Handler
-    BackHandler {
-        if (navController.canGoBack) {
-            if (navController.currentBackStackEntry?.destination?.route != ScreenDestinations.HomeScreen.route) {
-                navController.popBackStack()
-            }
         }
     }
 }

@@ -43,6 +43,7 @@ import androidx.navigation.compose.rememberNavController
 import dagger.hilt.android.AndroidEntryPoint
 import io.github.hirorocky.utasora.common.utils.RootUtil
 import io.github.hirorocky.utasora.theme.AppTheme
+import io.github.hirorocky.utasora.ui.BottomNavBar
 import io.github.hirorocky.utasora.ui.MainAnimationNavHost
 import timber.log.Timber
 
@@ -74,7 +75,11 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background,
                 ) {
                     val navController = rememberNavController()
-                    Scaffold { innerPaddingModifier ->
+                    Scaffold(
+                        bottomBar = {
+                            BottomNavBar(navController = navController)
+                        },
+                    ) { innerPaddingModifier ->
                         MainAnimationNavHost(
                             navController = navController,
                             modifier = Modifier.padding(innerPaddingModifier),
