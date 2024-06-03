@@ -37,7 +37,7 @@ import androidx.navigation.NamedNavArgument
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
-import io.github.hirorocky.utasora.common.DURATION_MILLIS
+import io.github.hirorocky.utasora.core.DURATION_MILLIS
 
 @ExperimentalAnimationApi
 fun NavGraphBuilder.screen(

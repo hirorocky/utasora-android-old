@@ -115,7 +115,6 @@ android {
 }
 
 dependencies {
-
     kspAndroidTest(libs.hilt.android.compiler)
 
     // Gradle
@@ -125,7 +124,6 @@ dependencies {
     implementation(libs.android.material)
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.appcompat)
-    implementation(libs.compose.material.icons.extended)
     // Navigation
     implementation(libs.androidx.compose.navigation)
     implementation(libs.androidx.compose.ui.graphics)
@@ -133,6 +131,7 @@ dependencies {
     implementation(libs.androidx.core.splashscreen)
     implementation(libs.androidx.hilt.compose.navigation)
     implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.compose.material.icons.extended)
     // Network and Local
     implementation(libs.compose.material3)
     implementation(libs.compose.ui)
@@ -145,7 +144,15 @@ dependencies {
     implementation(libs.protobuf.kotlinLite)
     implementation(libs.timber)
     //Module
-    implementation(projects.common)
+    implementation(projects.core)
+    implementation(projects.feature.introspection)
+    implementation(projects.feature.phrases)
+    implementation(projects.feature.poems)
+    implementation(projects.feature.settings)
+    implementation(projects.feature.signin)
+    implementation(projects.feature.signup)
+    implementation(projects.feature.splash)
+    implementation(projects.feature.title)
     implementation(projects.navigation)
     implementation(projects.storage)
     implementation(projects.theme)
@@ -159,13 +166,8 @@ dependencies {
 
     // Hilt
     annotationProcessor(libs.hilt.compiler)
-    kapt(libs.hilt.android.compiler)
 
-    // Firebase
-    implementation(platform(libs.firebase.bom))
-    implementation(libs.firebase.auth)
-    implementation(libs.firebase.firestore)
-    implementation(libs.firebase.analytics)
+    kapt(libs.hilt.android.compiler)
 
     testImplementation(libs.junit)
 

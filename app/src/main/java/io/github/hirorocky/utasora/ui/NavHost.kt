@@ -29,18 +29,18 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
+import io.github.hirorocky.utasora.feature.introspection.IntrospectionRoute
+import io.github.hirorocky.utasora.feature.phrases.PhrasesRoute
+import io.github.hirorocky.utasora.feature.poems.PoemsRoute
+import io.github.hirorocky.utasora.feature.settings.SettingsRoute
+import io.github.hirorocky.utasora.feature.signin.SignInRoute
+import io.github.hirorocky.utasora.feature.signup.SignUpRoute
+import io.github.hirorocky.utasora.feature.splash.SplashRoute
+import io.github.hirorocky.utasora.feature.title.TitleRoute
 import io.github.hirorocky.utasora.navigation.ScreenDestinations
 import io.github.hirorocky.utasora.navigation.clearAndNavigateTo
 import io.github.hirorocky.utasora.navigation.navigateTo
 import io.github.hirorocky.utasora.navigation.screen
-import io.github.hirorocky.utasora.screens.introspection.IntrospectionRoute
-import io.github.hirorocky.utasora.screens.phrases.PhrasesRoute
-import io.github.hirorocky.utasora.screens.poems.PoemsRoute
-import io.github.hirorocky.utasora.screens.settings.SettingsRoute
-import io.github.hirorocky.utasora.screens.signin.SignInRoute
-import io.github.hirorocky.utasora.screens.signup.SignUpRoute
-import io.github.hirorocky.utasora.screens.splash.SplashRoute
-import io.github.hirorocky.utasora.screens.title.TitleRoute
 
 @OptIn(ExperimentalAnimationApi::class)
 @Composable

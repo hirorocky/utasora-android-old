@@ -14,7 +14,7 @@ android {
 }
 
 dependencies {
-    implementation(projects.common)
+    implementation(projects.core)
     // Gradle
     implementation(platform(libs.compose.bom))
     // UI

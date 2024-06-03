@@ -42,7 +42,7 @@ import androidx.compose.ui.graphics.toArgb
 import androidx.core.view.WindowCompat
 import androidx.navigation.compose.rememberNavController
 import dagger.hilt.android.AndroidEntryPoint
-import io.github.hirorocky.utasora.common.utils.RootUtil
+import io.github.hirorocky.utasora.core.utils.RootUtil
 import io.github.hirorocky.utasora.theme.AppTheme
 import io.github.hirorocky.utasora.ui.BottomNavBar
 import io.github.hirorocky.utasora.ui.MainAnimationNavHost
